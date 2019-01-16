@@ -1,17 +1,22 @@
 {
-  "name": "graphql-apollo",
+  "name": "graphql-apollo-spacex",
   "version": "1.0.0",
   "main": "server.js",
   "author": "ADIL",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.0.2"
   },
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js --ignore client/",
+    "client": "cd client && yarn start",
+    "dev": "concurrently -n \"server,client\" -p \"[{name}] [{time}]\" -t \"HH:mm:ss\" \"yarn:server\" \"yarn:client\" --kill-others",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   }
 }

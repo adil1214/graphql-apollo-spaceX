@@ -31,7 +31,10 @@ const RootQuery = new GraphQLObjectType({
 		launches: {
 			type: new GraphQLList(LaunchType),
 			resolve(parent, args) {
-				return axios.get('https://api.spacexdata.com/v3/launches').then((res) => res.data);
+				return axios
+					.get('https://api.spacexdata.com/v3/launches')
+					.then((res) => res.data)
+					.catch((err) => console.log(err));
 			}
 		},
 		launch: {
@@ -42,21 +45,28 @@ const RootQuery = new GraphQLObjectType({
 			resolve(parent, args) {
 				return axios
 					.get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`)
-					.then((res) => res.data);
+					.then((res) => res.data)
+					.catch((err) => console.log(err));
 			},
 			rockets: {
 				type: new GraphQLList(RocketType),
 				resolve(parent, args) {
-					return axios.get('https://api.spacexdata.com/v3/rockets').then((res) => res.data);
+					return axios
+						.get('https://api.spacexdata.com/v3/rockets')
+						.then((res) => res.data)
+						.catch((err) => console.log(err));
 				}
 			},
-			launch: {
+			rocket: {
 				type: RocketType,
 				args: {
 					rocket_id: { type: GraphQLInt }
 				},
 				resolve(parent, args) {
-					return axios.get(`https://api.spacexdata.com/v3/rockets/${args.rocket_id}`).then((res) => res.data);
+					return axios
+						.get(`https://api.spacexdata.com/v3/rockets/${args.rocket_id}`)
+						.then((res) => res.data)
+						.catch((err) => console.log(err));
 				}
 			}
 		}
