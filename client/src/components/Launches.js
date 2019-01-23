@@ -13,7 +13,7 @@ const LAUNCHES_QUERY = gql`
 			launch_success
 		}
 	}
-`;
+`;// to be continued ...
 
 class Launches extends Component {
 	render() {

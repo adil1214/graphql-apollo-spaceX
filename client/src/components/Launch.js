@@ -39,7 +39,7 @@ class Launch extends Component {
 							launch_success,
 							rocket: { rocket_type, rocket_id, rocket_name }
 						} = data.launch;
-						console.log(data);
+						{/* console.log(data); */}
 						return (
 							<div>
 								<h1 className="display-4 my-3">

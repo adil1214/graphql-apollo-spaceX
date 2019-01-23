@@ -32,7 +32,8 @@ const RootQuery = new GraphQLObjectType({
 			type: new GraphQLList(LaunchType),
 			resolve(parent, args) {
 				return axios
-					.get('https://api.spacexdata.com/v3/launches')
+					.get('https://api.spacexdata.com/v3/launches?order=desc')
+					// apparently apollographql doesnt support orderBy so i did it manyally here
 					.then((res) => res.data)
 					.catch((err) => console.log(err));
 			}
